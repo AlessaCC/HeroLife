@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: "Assets/Escenas/Men\xFA.unity"
+    guid: b887157710f40f340a0ecb8149c7af01
+  - enabled: 1
+    path: Assets/Escenas/NJuego.unity
+    guid: 22d9f816939e1a94d8835e2da1e8349a
+  - enabled: 1
+    path: Assets/Escenas/Creditos.unity
+    guid: 8bac589ac9629cc4b9a041d4b04db6f8
+  - enabled: 0
+    path: Assets/Escenas/Opciones.unity
+    guid: 74644636495cc6c4d84fa25326c64654
+  - enabled: 1
+    path: Assets/Escenas/Juego.unity
+    guid: ac2a0c3232b0ca34e96599f52a4db26c

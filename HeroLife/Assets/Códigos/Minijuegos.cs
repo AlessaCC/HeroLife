@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Minijuegos : MonoBehaviour {
+    private int numMinijuego;
     private float expPorNivel;
     private float puntajeObtenido;
     private float porcentajeExito;
@@ -146,9 +147,23 @@ public class Minijuegos : MonoBehaviour {
         }
     }
 
+    public int NumMinijuego
+    {
+        get
+        {
+            return numMinijuego;
+        }
+
+        set
+        {
+            numMinijuego = value;
+        }
+    }
+
 
     // Use this for initialization
     void Start () {
+        NumMinijuego = 0;
         ExpPorNivel = 0;
         PuntajeObtenido = 0;
         PorcentajeExito = 0;
@@ -157,45 +172,43 @@ public class Minijuegos : MonoBehaviour {
         Mensaje = null;
         Completado = false;
         ExpPorAtaque = 0;
-        ExpMaxAtaque = 0;
         precisionAtaque = 0;
-	}
+    }
 
     // Update is called once per frame
     void Update() {
-        PorcentajeExito = (PuntajeObtenido / ExpPorNivel) * 100;
-        
+        ExpMaxAtaque = (ExpPorNivel / NumAtaques);
+        PorcentajeExito = (PuntajeObtenido / ExpPorNivel) * 100;        
 	}
 
     //Cada oportunidad de ataque tendrá un valor diferente dependiendo de la precisión
 
-    public float CalcularExpAtaque (bool ataqueValido, float expPorAtaque, float expMaxAtaque, float precisionAtaque)
+    public float CalcularExpAtaque ()
     {
-        AtaqueValido = ataqueValido;
-        ExpPorAtaque = expPorAtaque;
-        PrecisionAtaque = precisionAtaque;
-        ExpMaxAtaque = expMaxAtaque;
-        if (ataqueValido)
+        if (AtaqueValido)
         {
-            expPorAtaque = expMaxAtaque * precisionAtaque; //precicion ataque es un numero entre 0 y 1
+            ExpPorAtaque = ExpMaxAtaque * PrecisionAtaque; //precicion ataque es un numero entre 0 y 1
         }
-        return expPorAtaque;
+        return ExpPorAtaque;
     }
 
     //Función para sumar el puntaje del minijuego
 
-    public  float SumarPuntaje (float expPorNivel, float puntajeObtenido,  float expPorAtaque)
+    public  float SumarPuntaje ()
     {
-        ExpPorNivel = expPorNivel;
-        PuntajeObtenido = puntajeObtenido;
-        ExpPorAtaque = expPorAtaque;
-        if (expPorNivel > puntajeObtenido)
+        if (ExpPorNivel > PuntajeObtenido)
         {
-            puntajeObtenido += expPorAtaque;
+            PuntajeObtenido += ExpPorAtaque;
         }
-        return puntajeObtenido;
+        return PuntajeObtenido;
     }
     
+    public Minijuegos(int numMinijuego, float expPorNivel, int numAtaques)
+    {
+        NumMinijuego = numMinijuego;
+        ExpPorNivel = expPorNivel;
+        NumAtaques = numAtaques;
+    }
    
 
 }

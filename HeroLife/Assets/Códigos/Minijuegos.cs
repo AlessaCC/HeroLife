@@ -173,11 +173,12 @@ public class Minijuegos : MonoBehaviour {
         Completado = false;
         ExpPorAtaque = 0;
         precisionAtaque = 0;
+        ExpMaxAtaque = (ExpPorNivel / NumAtaques);
     }
 
     // Update is called once per frame
     void Update() {
-        ExpMaxAtaque = (ExpPorNivel / NumAtaques);
+       
         PorcentajeExito = (PuntajeObtenido / ExpPorNivel) * 100;        
 	}
 
@@ -202,7 +203,9 @@ public class Minijuegos : MonoBehaviour {
         }
         return PuntajeObtenido;
     }
-    
+
+    //Constructor 
+
     public Minijuegos(int numMinijuego, float expPorNivel, int numAtaques)
     {
         NumMinijuego = numMinijuego;

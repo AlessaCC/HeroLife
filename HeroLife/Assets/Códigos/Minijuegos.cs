@@ -168,7 +168,7 @@ public class Minijuegos : MonoBehaviour {
         PuntajeObtenido = 0;
         PorcentajeExito = 0;
         NumAtaques = 0; /* las inicializamos con los valores "" */
-        AtaqueValido = false;
+        AtaqueValido = true;
         Mensaje = null;
         Completado = false;
         ExpPorAtaque = 0;

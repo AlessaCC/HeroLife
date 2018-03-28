@@ -9,14 +9,12 @@ public class Minijuegos : MonoBehaviour {
     private float porcentajeExito;
     private int numAtaques;
     private float expPorAtaque;
-    private bool ataqueValido;
     private string mensaje;
     private bool completado;
     private float precisionAtaque;
     private float expMaxAtaque;
 
     // Variables, setters y getters
-
     public float ExpPorNivel
     {
         get
@@ -66,19 +64,6 @@ public class Minijuegos : MonoBehaviour {
         set
         {
             numAtaques = value;
-        }
-    }
-
-    public bool AtaqueValido
-    {
-        get
-        {
-            return ataqueValido;
-        }
-
-        set
-        {
-            ataqueValido = value;
         }
     }
 
@@ -168,12 +153,10 @@ public class Minijuegos : MonoBehaviour {
         PuntajeObtenido = 0;
         PorcentajeExito = 0;
         NumAtaques = 0; /* las inicializamos con los valores "" */
-        AtaqueValido = true;
         Mensaje = null;
         Completado = false;
         ExpPorAtaque = 0;
         precisionAtaque = 0;
-        ExpMaxAtaque = (ExpPorNivel / NumAtaques);
     }
 
     // Update is called once per frame
@@ -183,18 +166,14 @@ public class Minijuegos : MonoBehaviour {
 	}
 
     //Cada oportunidad de ataque tendrá un valor diferente dependiendo de la precisión
-
     public float CalcularExpAtaque ()
     {
-        if (AtaqueValido)
-        {
-            ExpPorAtaque = ExpMaxAtaque * PrecisionAtaque; //precicion ataque es un numero entre 0 y 1
-        }
+        ExpPorAtaque = ExpMaxAtaque * PrecisionAtaque; //precicion ataque es un numero entre 0 y 1
+        
         return ExpPorAtaque;
     }
 
     //Función para sumar el puntaje del minijuego
-
     public  float SumarPuntaje ()
     {
         if (ExpPorNivel > PuntajeObtenido)
@@ -204,8 +183,21 @@ public class Minijuegos : MonoBehaviour {
         return PuntajeObtenido;
     }
 
-    //Constructor 
+    public void Atacar()
+    {
+        if (NumAtaques > 0)
+        {
+            Debug.Log(PrecisionAtaque);
+            CalcularExpAtaque();
+            Debug.Log(ExpPorAtaque);
+            SumarPuntaje();
+            NumAtaques -= 1;
+        }
 
+        Debug.Log(PuntajeObtenido);
+    }
+
+    //Constructor 
     public Minijuegos(int numMinijuego, float expPorNivel, int numAtaques)
     {
         NumMinijuego = numMinijuego;

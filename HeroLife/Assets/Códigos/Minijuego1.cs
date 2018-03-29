@@ -6,15 +6,12 @@ using UnityEngine.UI;
 
 public class Minijuego1 : MonoBehaviour
 {
-
     private Minijuegos nivel1; //constructor
     private float velocidad;
     public GameObject limMin;
     public GameObject limMax; // objetos invisibles que se utilizan como límites 
     private Rigidbody2D cuerpo;
     private Transform posicion;
-    private Vector2 derecha;
-    private Vector2 izquierda;  //vectores que se utilizan para mover la bolita
     private bool ataque;
 
     public Minijuegos Nivel1
@@ -56,32 +53,6 @@ public class Minijuego1 : MonoBehaviour
         }
     }
 
-    public Vector2 Derecha
-    {
-        get
-        {
-            return derecha;
-        }
-
-        set
-        {
-            derecha = value;
-        }
-    }
-
-    public Vector2 Izquierda
-    {
-        get
-        {
-            return izquierda;
-        }
-
-        set
-        {
-            izquierda = value;
-        }
-    }
-
     public bool Ataque
     {
         get
@@ -108,19 +79,15 @@ public class Minijuego1 : MonoBehaviour
         }
     }
 
-
     // Use this for initialization
     void Start()
     {
         Nivel1 = new Minijuegos(1, 600, 5);
         Cuerpo = GetComponent<Rigidbody2D>();
-        Velocidad = 2;
+        Velocidad = 3;
         Posicion = GetComponent<Transform>();
-        derecha = new Vector2(Velocidad, cuerpo.velocity.y);
-        izquierda = new Vector2(-Velocidad, cuerpo.velocity.y);
         Nivel1.ExpMaxAtaque = (Nivel1.ExpPorNivel / Nivel1.NumAtaques);
         Debug.Log(Nivel1.ExpMaxAtaque);
-
     }
 
     // Update is called once per frame
@@ -128,22 +95,22 @@ public class Minijuego1 : MonoBehaviour
     {
         if (Posicion.position.x <= limMin.transform.position.x)
         {
-            Cuerpo.velocity = derecha;
+            Cuerpo.velocity = new Vector2(Velocidad, cuerpo.velocity.y);
         }
 
         if (Posicion.position.x >= limMax.transform.position.x)
         {
-            Cuerpo.velocity = izquierda;
+            Cuerpo.velocity = new Vector2(-Velocidad, cuerpo.velocity.y);
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("Posicion" + Posicion.position.x);
-            if (((Posicion.position.x > 0.03f) && (Posicion.position.x <= 0.7f)) || ((Posicion.position.x < -0.03f) && (Posicion.position.x >= -0.7f)))
+            if (((Posicion.position.x > 0.1f) && (Posicion.position.x <= 2.5f)) || ((Posicion.position.x < -0.1f) && (Posicion.position.x >= -2.5f)))
             {
-                Nivel1.PrecisionAtaque = 0.35f;
+                Nivel1.PrecisionAtaque = 0.5f;
             }
-            else if ((Posicion.position.x < -0.7f) || (Posicion.position.x > 0.7f))
+            else if ((Posicion.position.x < -2.5f) || (Posicion.position.x > 2.5f))
             {
                 Nivel1.PrecisionAtaque = 0f;
             }
@@ -151,8 +118,8 @@ public class Minijuego1 : MonoBehaviour
             {
                 Nivel1.PrecisionAtaque = 1f;
             }
-
             Nivel1.Atacar();
+            Velocidad += 0.8f;
         }
     }
 }

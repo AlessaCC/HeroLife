@@ -84,7 +84,7 @@ public class Minijuego1 : MonoBehaviour
     {
         Nivel1 = new Minijuegos(1, 600, 5);
         Cuerpo = GetComponent<Rigidbody2D>();
-        Velocidad = 3;
+        Velocidad = 6;
         Posicion = GetComponent<Transform>();
         Nivel1.ExpMaxAtaque = (Nivel1.ExpPorNivel / Nivel1.NumAtaques);
         Debug.Log(Nivel1.ExpMaxAtaque);
@@ -106,11 +106,11 @@ public class Minijuego1 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("Posicion" + Posicion.position.x);
-            if (((Posicion.position.x > 0.1f) && (Posicion.position.x <= 2.5f)) || ((Posicion.position.x < -0.1f) && (Posicion.position.x >= -2.5f)))
+            if (((Posicion.position.x > 0f) && (Posicion.position.x <= 1.65f)) || ((Posicion.position.x < -0.44f) && (Posicion.position.x >= -2.1f)))
             {
                 Nivel1.PrecisionAtaque = 0.5f;
             }
-            else if ((Posicion.position.x < -2.5f) || (Posicion.position.x > 2.5f))
+            else if ((Posicion.position.x < -2.1f) || (Posicion.position.x > 1.62f))
             {
                 Nivel1.PrecisionAtaque = 0f;
             }
@@ -119,7 +119,7 @@ public class Minijuego1 : MonoBehaviour
                 Nivel1.PrecisionAtaque = 1f;
             }
             Nivel1.Atacar();
-            Velocidad += 0.8f;
+            Velocidad += 1.5f;
         }
     }
 }

@@ -187,14 +187,10 @@ public class Minijuegos : MonoBehaviour {
     {
         if (NumAtaques > 0)
         {
-            Debug.Log("Precision"+PrecisionAtaque);
             CalcularExpAtaque();
-            Debug.Log("ExpPorAtaque"+ExpPorAtaque);
             SumarPuntaje();
             NumAtaques -= 1;
-        }
-
-        Debug.Log("PTotal"+PuntajeObtenido);
+        }       
     }
 
     //Constructor 

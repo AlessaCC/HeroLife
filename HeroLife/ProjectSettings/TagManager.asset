@@ -7,6 +7,7 @@ TagManager:
   - Opciones
   - ObjPerfecto
   - ObjMedio
+  - M2
   layers:
   - Default
   - TransparentFX

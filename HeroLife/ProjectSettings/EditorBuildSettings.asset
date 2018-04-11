@@ -15,8 +15,14 @@ EditorBuildSettings:
     path: Assets/Escenas/Creditos.unity
     guid: 8bac589ac9629cc4b9a041d4b04db6f8
   - enabled: 0
-    path: Assets/Escenas/Opciones.unity
+    path: 
     guid: 74644636495cc6c4d84fa25326c64654
   - enabled: 1
     path: Assets/Escenas/Juego.unity
     guid: ac2a0c3232b0ca34e96599f52a4db26c
+  - enabled: 1
+    path: Assets/Escenas/Minijuego_1.unity
+    guid: c3bb5b65ad73aa64ba53893d5755f71c
+  - enabled: 1
+    path: Assets/Escenas/Minijuego_2.unity
+    guid: 2e8908350b23a924e9226e7cb868ddd9

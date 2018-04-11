@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Minijuego1 : MonoBehaviour
 {
-    private Minijuegos nivel1; //constructor
+    private static Minijuegos nivel1; //constructor
     private float velocidad;
     public GameObject limMin;
     public GameObject limMax; // objetos invisibles que se utilizan como límites 
@@ -90,6 +91,11 @@ public class Minijuego1 : MonoBehaviour
         Debug.Log(Nivel1.ExpMaxAtaque);
     }
 
+    void TerminarMinijuego()
+    {
+        SceneManager.LoadScene(3);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -103,9 +109,8 @@ public class Minijuego1 : MonoBehaviour
             Cuerpo.velocity = new Vector2(-Velocidad, cuerpo.velocity.y);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonUp(0))
         {
-            Debug.Log("Posicion" + Posicion.position.x);
             if (((Posicion.position.x > 0f) && (Posicion.position.x <= 1.65f)) || ((Posicion.position.x < -0.44f) && (Posicion.position.x >= -2.1f)))
             {
                 Nivel1.PrecisionAtaque = 0.5f;
@@ -120,6 +125,13 @@ public class Minijuego1 : MonoBehaviour
             }
             Nivel1.Atacar();
             Velocidad += 1.5f;
+            Debug.Log(Nivel1.NumAtaques);
+            Debug.Log("Se ha presionado");
+        }
+        
+        if (Nivel1.NumAtaques <= 0)
+        {
+            TerminarMinijuego();
         }
     }
 }
